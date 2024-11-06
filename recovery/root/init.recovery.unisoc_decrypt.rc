@@ -1,0 +1,8 @@
+import /vendor/etc/init/android.hardware.gatekeeper@1.0-service.trusty.rc
+import /vendor/etc/init/android.hardware.security.keymint@1.0-unisoc.service
+
+on property:hwservicemanager.ready=true
+    start vendor.gatekeeper-1-0
+    start vendor.unisoc.keymint-1-0
+    setprop vendor.sprd.storageproxyd.enabled 1
+
