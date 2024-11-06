@@ -29,10 +29,8 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
 
-PRODUCT_STATIC_BOOT_CONTROL_HAL := \
-    libgptutils \
-    libz \
-    libcutils
+#PRODUCT_STATIC_BOOT_CONTROL_HAL := \
+    
 
 PRODUCT_PACKAGES += \
     otapreopt_script \
