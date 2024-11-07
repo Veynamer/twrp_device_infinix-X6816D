@@ -25,6 +25,9 @@ PRODUCT_SHIPPING_API_LEVEL := 30
 # VNDK API
 PRODUCT_TARGET_VNDK_VERSION := 31
 
+# Soong namespaces
+PRODUCT_SOONG_NAMESPACES += $(DEVICE_PATH)
+
 # Boot control HAL
 PRODUCT_PACKAGES += \
     android.hardware.boot@1.0-impl \
