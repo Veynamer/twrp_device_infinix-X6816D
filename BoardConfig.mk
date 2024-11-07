@@ -136,7 +136,8 @@ RECOVERY_SDCARD_ON_DATA := true
 TW_HAS_EDL_MODE := true
 TW_CUSTOM_CPU_TEMP_PATH = "/sys/class/thermal/thermal_zone1/temp"
 TW_LOAD_VENDOR_MODULES := "adaptive_ts.ko"
-
+# Treble
+PRODUCT_FULL_TREBLE_OVERRIDE := true
 # screen
 TW_FRAMERATE := 60
 TW_BRIGHTNESS_PATH := "/sys/class/backlight/sprd_backlight/brightness"

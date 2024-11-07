@@ -21,7 +21,7 @@
 /mnt/vendor              ext4     /dev/block/by-name/vendor                    flags=display="prodnv";backup=1;flashimg=1
 /logo                    emmc     /dev/block/by-name/logo                      flags=display="logo";backup=1;flashimg=1
 /fbootlogo               emmc     /dev/block/by-name/fbootlogo                 flags=display="Fastboot logo";backup=1;flashimg=1
-/uboot_log          emmc        /dev/block/by-name/uboot_log            flags=display="U-Boot Log";backup=1
+/uboot_log          emmc        /dev/block/by-name/uboot_log            flags=display="uboot_log";backup=1
 # MODEM
 /wcnmodem       emmc       /dev/block/by-name/wcnmodem         flags=display="wcnmodem";backup=1;flashimg=1
 /gnssmodem      emmc       /dev/block/by-name/gnssmodem        flags=display="gnssmodem";backup=1;flashimg=1
