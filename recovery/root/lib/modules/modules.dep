@@ -37,12 +37,14 @@
 /lib/modules/aes-neon-blk.ko:
 /lib/modules/gpio-eic-sprd.ko:
 /lib/modules/sprd_flash_drv.ko:
+/lib/modules/sensorhub.ko: /lib/modules/kfifo_buf.ko
 /lib/modules/sprd-cpufreq-public.ko:
 /lib/modules/nvmem-sc27xx-efuse.ko:
 /lib/modules/ums512-clk.ko: /lib/modules/clk-sprd.ko
 /lib/modules/sprd_time_sync_cp.ko: /lib/modules/sprd_time_sync.ko /lib/modules/sprd_systimer.ko
 /lib/modules/sblock_bridge.ko: /lib/modules/sipc-core.ko /lib/modules/sprd_power_manager.ko
 /lib/modules/snd-soc-sprd-codec-sc2730-power.ko: /lib/modules/snd-soc-sprd-card.ko
+/lib/modules/kfifo_buf.ko:
 /lib/modules/ledtrig-pattern.ko:
 /lib/modules/sc27xx_typec.ko: /lib/modules/switch_class.ko
 /lib/modules/asix.ko:
@@ -68,10 +70,12 @@
 /lib/modules/pinctrl-sprd.ko:
 /lib/modules/snd-soc-sprd-dummy-codec.ko:
 /lib/modules/sprd-debugstat-sharkl5pro.ko: /lib/modules/sprd-debugstat-core.ko /lib/modules/sprd_sip_svc.ko
+/lib/modules/tran_gesture.ko:
 /lib/modules/ghash-ce.ko:
 /lib/modules/sprd_camsys_pw_domain.ko:
 /lib/modules/i2c-sprd-hw.ko:
 /lib/modules/sprd-drm.ko: /lib/modules/transsion_bias_voltage.ko /lib/modules/tran_hwinfo.ko /lib/modules/sdhci-sprd.ko /lib/modules/mmc_hsq.ko /lib/modules/mmc_swcq.ko /lib/modules/sprd-gsp.ko /lib/modules/apsys-dvfs.ko /lib/modules/unisoc-iommu.ko /lib/modules/trusty-ipc.ko
+/lib/modules/adaptive-ts.ko: /lib/modules/tran_gesture.ko /lib/modules/sprd-drm.ko /lib/modules/transsion_bias_voltage.ko /lib/modules/tran_hwinfo.ko /lib/modules/apsys-dvfs.ko /lib/modules/sprd-gsp.ko /lib/modules/sensorhub.ko /lib/modules/kfifo_buf.ko /lib/modules/unisoc-iommu.ko
 /lib/modules/sprd-sipc-virt-bus.ko:
 /lib/modules/trusty-log.ko: /lib/modules/trusty.ko
 /lib/modules/pinctrl-sprd-sharkl5Pro.ko: /lib/modules/pinctrl-sprd.ko

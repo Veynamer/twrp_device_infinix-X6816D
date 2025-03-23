@@ -100,6 +100,8 @@ sc27xx-poweroff.ko
 phy-sprd-sharkl5Pro.ko
 sc27xx_typec.ko
 sc27xx-vibra.ko
+kfifo_buf.ko
+sensorhub.ko
 sprd_tcpm.ko
 sc27xx_pd.ko
 spi-sprd.ko
@@ -140,5 +142,6 @@ mipi_driver.ko
 transsion_bias_voltage.ko
 switch_class.ko
 switch_gpio.ko
+tran_gesture.ko
 transsion_resmonitor.ko
 transsion_trancare.ko

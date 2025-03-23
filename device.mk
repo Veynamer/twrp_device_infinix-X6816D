@@ -4,11 +4,17 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 #
+# Enable virtual A/B OTA
+$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
+
+# Enable project quotas and casefolding for emulated storage without sdcardfs
+$(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
+
+# Enable updating of APEXes
+$(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 
 LOCAL_PATH := device/infinix/X6816D
 
-# Enable virtual A/B OTA
-$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
 # A/B
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \
@@ -26,12 +32,8 @@ PRODUCT_SHIPPING_API_LEVEL := 30
 PRODUCT_TARGET_VNDK_VERSION := 31
 
 # Soong namespaces
-PRODUCT_SOONG_NAMESPACES += $(DEVICE_PATH)
-
-# Boot control HAL
-PRODUCT_PACKAGES += \
-    android.hardware.boot@1.0-impl \
-    android.hardware.boot@1.0-service
+PRODUCT_SOONG_NAMESPACES += \
+    $(LOCAL_PATH) \
 
 PRODUCT_PACKAGES += \
 
@@ -45,17 +47,22 @@ PRODUCT_PACKAGES += \
     update_verifier \
     update_engine_sideload
 
+# EROFS utils
+PRODUCT_PACKAGES += \
+    mkfs.erofs.recovery \
+    dump.erofs.recovery \
+    fsck.erofs.recovery
+
 # Boot Control HAL
 PRODUCT_PACKAGES += \
-    android.hardware.boot@1.1-impl \
-    android.hardware.boot@1.1-impl.recovery \
-    android.hardware.boot@1.1-service
+    android.hardware.boot@1.0-impl-1.2 \
+    android.hardware.boot@1.0-impl.recovery \
+    android.hardware.boot@1.0-service
 
-# Fastbootd
+# fastbootd
 PRODUCT_PACKAGES += \
-    fastbootd \
-    android.hardware.fastboot@1.0-impl \
-    android.hardware.fastboot@1.0-impl.recovery
+    android.hardware.fastboot@1.0-impl-mock \
+    fastbootd
 
 # OEM otacerts
 PRODUCT_EXTRA_RECOVERY_KEYS += \

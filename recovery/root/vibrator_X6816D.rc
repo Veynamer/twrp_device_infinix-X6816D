@@ -1,0 +1,9 @@
+# vibrator
+service vendor.sprd.hardware.vibrator-service /vendor/bin/hw/vendor.sprd.hardware.vibrator-service
+    class hal
+    user root
+    group root
+    seclabel u:r:recovery:s0
+     
+on boot
+    start vendor.sprd.hardware.vibrator-service
