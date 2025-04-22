@@ -14,16 +14,33 @@ BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
 # A/B
 AB_OTA_UPDATER := true
 AB_OTA_PARTITIONS += \
+    boot \
+    mmcblk0boot1 \
+    trustos \
+    sml \
+    teecfg \
+    vbmeta \
+    vbmeta_system \
+    vbmeta_system_ext \
     vbmeta_vendor \
+    vbmeta_product \
     dtbo \
-    vendor_dlkm \
+    uboot \
+    vendor_boot \
+    l_modem \
+    l_agdsp \
+    l_cdsp \
+    l_gdsp \
+    l_ldsp \
+    pm_sys \
+    l_fixnv1 \
+    l_fixnv2 \
+    l_deltanv \
+    system \
     system_ext \
     vendor \
-    vbmeta \
-    system \
-    boot \
-    vbmeta_system \
-    product
+    product \
+    vendor_dlkm
 
 # Architecture
 TARGET_ARCH := arm64
