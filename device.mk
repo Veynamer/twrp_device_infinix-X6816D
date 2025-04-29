@@ -13,6 +13,9 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 # Enable updating of APEXes
 $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 
+# Configure launch_with_vendor_ramdisk.mk
+$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/launch_with_vendor_ramdisk.mk)
+
 LOCAL_PATH := device/infinix/X6816D
 
 # A/B
@@ -58,6 +61,13 @@ PRODUCT_PACKAGES += \
     android.hardware.boot@1.0-impl-1.2 \
     android.hardware.boot@1.0-impl.recovery \
     android.hardware.boot@1.0-service
+
+# Health HAL
+PRODUCT_PACKAGES += \
+    android.hardware.health@2.1-impl \
+    android.hardware.health@2.1-service \
+    android.hardware.health@2.1-impl.recovery \
+    android.hardware.health@2.1-service.rc
 
 # fastbootd
 PRODUCT_PACKAGES += \
