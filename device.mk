@@ -62,6 +62,11 @@ PRODUCT_PACKAGES += \
     android.hardware.boot@1.0-impl.recovery \
     android.hardware.boot@1.0-service
 
+# Power hidl service
+PRODUCT_PACKAGES += \
+    android.hardware.power@1.0-impl \
+    android.hardware.power@1.0-service
+
 # Health HAL
 PRODUCT_PACKAGES += \
     android.hardware.health@2.1-impl \
@@ -69,9 +74,15 @@ PRODUCT_PACKAGES += \
     android.hardware.health@2.1-impl.recovery \
     android.hardware.health@2.1-service.rc
 
+# Vibrator HAL
+PRODUCT_PACKAGES += \
+    android.hardware.vibrator@1.0-service \
+    android.hardware.vibrator@1.0-impl
+
 # fastbootd
 PRODUCT_PACKAGES += \
     android.hardware.fastboot@1.0-impl-mock \
+    android.hardware.fastboot@1.1-impl-mock.recovery \
     fastbootd
 
 # OEM otacerts
