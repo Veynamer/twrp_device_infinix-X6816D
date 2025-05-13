@@ -202,5 +202,4 @@ TWRP_INCLUDE_LOGCAT := true
 TARGET_USES_LOGD := true
 # Modules
 TW_LOAD_VENDOR_BOOT_MODULES := true
-TW_LOAD_VENDOR_MODULES := "adaptive_ts.ko kfifo_buf.ko sensorhub.ko sprd_thermal.ko tran_gesture.ko "
 

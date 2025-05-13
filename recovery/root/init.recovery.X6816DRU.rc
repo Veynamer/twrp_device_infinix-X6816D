@@ -1,7 +1,6 @@
 #add for board init.rc for recovery mode
 import /init.recovery.common.rc
 import /vibrator_X6816D.rc
-import /init.itel.common.rc
 
 on post-fs 
     start boot-hal-1-2
@@ -13,3 +12,44 @@ on init
 
 on boot
     start health-hal-2-1
+    
+# Modules
+on early-init
+    # Core dependencies
+    insmod /vendor/lib/modules/kfifo_buf.ko
+    insmod /vendor/lib/modules/sensorhub.ko
+    insmod /vendor/lib/modules/tran_gesture.ko
+
+    insmod /vendor/lib/modules/unisoc-iommu.ko
+    insmod /vendor/lib/modules/sprd-gsp.ko
+    insmod /vendor/lib/modules/apsys-dvfs.ko
+    insmod /vendor/lib/modules/tran_hwinfo.ko
+    insmod /vendor/lib/modules/transsion_bias_voltage.ko
+    insmod /vendor/lib/modules/sprd-drm.ko
+
+    # Touchscreen and fingerprint modules
+    insmod /vendor/lib/modules/adaptive-ts.ko
+    insmod /vendor/lib/modules/focaltech_fp.ko    
+    
+on post-fs-data
+    # USB OTG
+    chmod 0666 /sys/devices/platform/tran_charger/OTG_CTL
+    chown system system /sys/devices/platform/tran_charger/OTG_CTL
+
+# add for Sprd platform support flash device node start.
+    chmod 0666 /sys/class/torch/torch/torch_level
+    chown system system /sys/class/torch/torch/torch_level
+    chmod 0666 /sys/class/sub_torch/sub_torch/sub_torch_level
+    chown system system sys/class/sub_torch/sub_torch/sub_torch_level
+    chmod 0666 /sys/devices/virtual/torch/torch/torch_level
+    chown system system /sys/devices/virtual/torch/torch/torch_level
+    chmod 0666 /sys/devices/virtual/sub_torch/sub_torch/sub_torch_level
+    chown system system /sys/devices/virtual/sub_torch/sub_torch/sub_torch_level
+
+# add for Sprd platform support flash device node end.
+
+# add by chunxu.long for X6816DSST6-106 user get coulomb value 2024.1.4 start
+on boot
+    chmod 0664 /sys/class/power_supply/sc27xx-fgu/charge_now
+    chown system system /sys/class/power_supply/sc27xx-fgu/charge_now
+# add by chunxu.long for X6816DSST6-106 user get coulomb value 2024.1.4 end
