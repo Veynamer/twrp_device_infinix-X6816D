@@ -5,15 +5,7 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 # Enable virtual A/B OTA
-$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
-
-# Enable project quotas and casefolding for emulated storage without sdcardfs
-$(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
-
-# Enable updating of APEXes
-$(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
-
-# Configure launch_with_vendor_ramdisk.mk
+ENABLE_VIRTUAL_AB := true
 $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/launch_with_vendor_ramdisk.mk)
 
 LOCAL_PATH := device/infinix/X6816D
@@ -28,62 +20,55 @@ AB_OTA_POSTINSTALL_CONFIG += \
 # Dynamic Partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
-# SHIPPING API
+# VNDK
 PRODUCT_SHIPPING_API_LEVEL := 30
-
-# VNDK API
 PRODUCT_TARGET_VNDK_VERSION := 31
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
-    $(LOCAL_PATH) \
+    $(LOCAL_PATH) \   
+
+
+# Boot control HAL
+PRODUCT_PACKAGES += \
+    android.hardware.boot@1.0-service
 
 PRODUCT_PACKAGES += \
+    android.hardware.health@2.1-impl \
+    android.hardware.health@2.1-service \
+    libhealthd.$(PRODUCT_PLATFORM)
+#TW_LOAD_VENDOR_MODULES := "goodix_fp.ko  modules.load modules.load.recovery msm_drm.ko sprd_audcp_boot.ko  fpsensor_fp.ko sprd_sensor.ko aw32257_charger.ko charger-manager.ko tran_charger.ko musb_hdrc.ko musb_sprd.ko"
+TW_LOAD_VENDOR_MODULES := $(shell echo \"$(shell ls $(DEVICE_PATH)/recovery/root/lib/modules)\")
+ 
+# Boot control HAL
+PRODUCT_PACKAGES += \
+    android.hardware.boot@1.2-impl \
+    android.hardware.boot@1.2-impl.recovery \
+vendor.sprd.hardware.boot@1.2-impl \
+vendor.sprd.hardware.boot@1.2-impl.recovery
 
-#PRODUCT_STATIC_BOOT_CONTROL_HAL := \
-    
+PRODUCT_PACKAGES += \
+    bootctrl \
+    bootctrl.recovery 
 
+
+PRODUCT_PACKAGES += \
+    bootctrl.ums512
+
+PRODUCT_PACKAGES_DEBUG += \
+    update_engine_client
+PRODUCT_PACKAGES_DEBUG += \
+    bootctrl.ums512
 PRODUCT_PACKAGES += \
     otapreopt_script \
     cppreopts.sh \
     update_engine \
     update_verifier \
     update_engine_sideload
-
-# EROFS utils
-PRODUCT_PACKAGES += \
-    mkfs.erofs.recovery \
-    dump.erofs.recovery \
-    fsck.erofs.recovery
-
-# Boot Control HAL
-PRODUCT_PACKAGES += \
-    android.hardware.boot@1.0-impl-1.2 \
-    android.hardware.boot@1.0-impl.recovery \
-    android.hardware.boot@1.0-service
-
-# Power hidl service
-PRODUCT_PACKAGES += \
-    android.hardware.power@1.0-impl \
-    android.hardware.power@1.0-service
-
-# Health HAL
-PRODUCT_PACKAGES += \
-    android.hardware.health@2.1-impl \
-    android.hardware.health@2.1-service \
-    android.hardware.health@2.1-impl.recovery \
-    android.hardware.health@2.1-service.rc
-
-# Vibrator HAL
-PRODUCT_PACKAGES += \
-    android.hardware.vibrator@1.0-service \
-    android.hardware.vibrator@1.0-impl
-
-# fastbootd
+    
 PRODUCT_PACKAGES += \
     android.hardware.fastboot@1.0-impl-mock \
-    android.hardware.fastboot@1.1-impl-mock.recovery \
-    fastbootd
+    fastbootd    
 
 # OEM otacerts
 PRODUCT_EXTRA_RECOVERY_KEYS += \
