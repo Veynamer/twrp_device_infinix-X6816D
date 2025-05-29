@@ -28,7 +28,7 @@ PRODUCT_TARGET_VNDK_VERSION := 31
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
-    $(LOCAL_PATH) \   
+    $(LOCAL_PATH) \
 
 
 # Boot control HAL
@@ -44,8 +44,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.boot@1.2-impl \
     android.hardware.boot@1.2-impl.recovery \
-vendor.sprd.hardware.boot@1.2-impl \
-vendor.sprd.hardware.boot@1.2-impl.recovery
+#vendor.sprd.hardware.boot@1.2-impl \
+#vendor.sprd.hardware.boot@1.2-impl.recovery
 
 PRODUCT_PACKAGES += \
     bootctrl \
@@ -59,6 +59,7 @@ PRODUCT_PACKAGES_DEBUG += \
     update_engine_client
 PRODUCT_PACKAGES_DEBUG += \
     bootctrl.ums512
+
 PRODUCT_PACKAGES += \
     otapreopt_script \
     cppreopts.sh \
@@ -68,6 +69,7 @@ PRODUCT_PACKAGES += \
     
 PRODUCT_PACKAGES += \
     android.hardware.fastboot@1.0-impl-mock \
+    android.hardware.fastboot@1.0-impl-mock-recovery \
     fastbootd    
 
 # OEM otacerts
