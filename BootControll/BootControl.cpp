@@ -13,16 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#include <cstdint>
 #define LOG_TAG "vendor.sprd.hardware.boot@1.2-impl"
 
 #include <memory>
 
 #include <log/log.h>
+#include <android-base/logging.h>
+#include <bootloader_message/bootloader_message.h>
 
 #include "BootControl.h"
+#include "boot_region_control_private.h"
+#include "boot_control_definition.h"
 
-namespace vendor {
-namespace sprd
+namespace android {
 namespace hardware {
 namespace boot {
 namespace V1_2 {
@@ -43,11 +47,35 @@ Return<uint32_t> BootControl::getCurrentSlot() {
     return impl_.GetCurrentSlot();
 }
 
+Return<void> BootControl::clearAvbbctlFlag() {
+  std::string err;
+  std::string device = get_bootloader_message_blk_device(&err);
+  if (device.empty()) {
+    LOG(ERROR) << "Could not find bootloader message block device: " << err;
+    return Void();
+  }
+
+  bootloader_control boot_ctrl;
+  if (!LoadBootloaderControl(device, &boot_ctrl)) {
+    LOG(ERROR) << "Failed to load bootloader control block";
+    return Void();
+  }
+
+  uint32_t computed_crc32 = BootloaderControlLECRC(&boot_ctrl);
+  if (boot_ctrl.crc32_le == computed_crc32 &&  boot_ctrl.reserved1[0] == 1) {
+    boot_ctrl.reserved1[0] = 0;
+    LOG(INFO) << "Clear avb boot control convert flag";
+    UpdateAndSaveBootloaderControl(device, &boot_ctrl);
+  }
+  return Void();
+}
+
 Return<void> BootControl::markBootSuccessful(markBootSuccessful_cb _hidl_cb) {
     struct CommandResult cr;
     if (impl_.MarkBootSuccessful()) {
         cr.success = true;
         cr.errMsg = "Success";
+        clearAvbbctlFlag();
     } else {
         cr.success = false;
         cr.errMsg = "Operation failed";
@@ -58,7 +86,7 @@ Return<void> BootControl::markBootSuccessful(markBootSuccessful_cb _hidl_cb) {
 
 Return<void> BootControl::setActiveBootSlot(uint32_t slot, setActiveBootSlot_cb _hidl_cb) {
     struct CommandResult cr;
-    if (impl_.SetActiveBootSlot(slot)) {
+    if (impl_.SetActiveBootSlot(slot) && implext_.SetBootRegionSlot(slot)) {
         cr.success = true;
         cr.errMsg = "Success";
     } else {
@@ -112,6 +140,12 @@ Return<bool> BootControl::setSnapshotMergeStatus(MergeStatus status) {
 
 Return<MergeStatus> BootControl::getSnapshotMergeStatus() {
     return impl_.GetSnapshotMergeStatus();
+}
+
+// Methods from ::android::hardware::boot::V1_2::IBootControl follow.
+Return<uint32_t> BootControl::getActiveBootSlot() {
+    if (!impl_.GetActiveBootSlot()) return 0;
+    return impl_.GetActiveBootSlot();
 }
 
 IBootControl* HIDL_FETCH_IBootControl(const char* /* hal */) {
