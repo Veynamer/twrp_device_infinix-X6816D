@@ -21,7 +21,8 @@
 #include <hidl/Status.h>
 #include <libboot_control/libboot_control.h>
 
-namespace android {
+namespace vendor {
+namespace sprd {
 namespace hardware {
 namespace boot {
 namespace V1_2 {
