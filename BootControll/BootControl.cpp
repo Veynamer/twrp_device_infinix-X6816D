@@ -26,7 +26,8 @@
 #include "boot_region_control_private.h"
 #include "boot_control_definition.h"
 
-namespace android {
+namespace vendor {
+namespace sprd {
 namespace hardware {
 namespace boot {
 namespace V1_2 {
