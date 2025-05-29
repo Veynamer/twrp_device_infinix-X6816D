@@ -11,15 +11,12 @@ cc_library_shared {
 
     shared_libs: [
         "liblog",
-        "libhardware",
         "libhidlbase",
+        "libhardware",
         "libutils",
-        "vendor.sprd.hardware.boot@1.2",
         "android.hardware.boot@1.0",
-        "bootctrl.ums512",
-        "libgptutils",
-        "libz",
-        "libcutils",
+        "android.hardware.boot@1.1",
+        "android.hardware.boot@1.2"
     ],
     static_libs: [
         "libboot_control",
@@ -37,15 +34,12 @@ cc_binary {
 
     shared_libs: [
         "liblog",
-        "libhardware",
         "libhidlbase",
+        "libhardware",
         "libutils",
-        "vendor.sprd.hardware.boot@1.2",
         "android.hardware.boot@1.0",
-        "bootctrl.ums512",
-        "libgptutils",
-        "libz",
-        "libcutils",
+        "android.hardware.boot@1.1",
+        "android.hardware.boot@1.2"
     ],
 
 }
