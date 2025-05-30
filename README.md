@@ -1,4 +1,4 @@
-# Android device tree for Infinix Infinix X6816D (Infinix-X6816D)
+# TWRP device tree for Infinix HOT 12 Play NFC (Infinix-X6816D)
 
 ```
 #

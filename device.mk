@@ -20,8 +20,6 @@ AB_OTA_POSTINSTALL_CONFIG += \
 # Dynamic Partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
-TW_LOAD_VENDOR_BOOT_MODULES := true
-
 # VNDK
 PRODUCT_SHIPPING_API_LEVEL := 30
 PRODUCT_TARGET_VNDK_VERSION := 31
@@ -30,11 +28,6 @@ PRODUCT_TARGET_VNDK_VERSION := 31
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH) \
 
-
-# Boot control HAL
-PRODUCT_PACKAGES += \
-    android.hardware.boot@1.0-service
-
 PRODUCT_PACKAGES += \
     android.hardware.health@2.1-impl \
     android.hardware.health@2.1-service \
@@ -42,24 +35,26 @@ PRODUCT_PACKAGES += \
     
 # Boot control HAL
 PRODUCT_PACKAGES += \
+    android.hardware.boot@1.2-service \
     android.hardware.boot@1.2-impl \
     android.hardware.boot@1.2-impl.recovery \
     vendor.sprd.hardware.boot@1.2-impl \
     vendor.sprd.hardware.boot@1.2-impl.recovery
-
+    
 PRODUCT_PACKAGES += \
     bootctrl \
-    bootctrl.recovery 
-
-
+    bootctrl.recovery \
+    bootctrl.default
 PRODUCT_PACKAGES += \
     bootctrl.ums512
-
+    
+# Debug    
 PRODUCT_PACKAGES_DEBUG += \
     update_engine_client
 PRODUCT_PACKAGES_DEBUG += \
     bootctrl.ums512
 
+# OTA and Sideload    
 PRODUCT_PACKAGES += \
     otapreopt_script \
     cppreopts.sh \
@@ -67,6 +62,7 @@ PRODUCT_PACKAGES += \
     update_verifier \
     update_engine_sideload
     
+# FastbootD    
 PRODUCT_PACKAGES += \
     android.hardware.fastboot@1.0-impl-mock \
     android.hardware.fastboot@1.0-impl-mock-recovery \
@@ -75,3 +71,6 @@ PRODUCT_PACKAGES += \
 # OEM otacerts
 PRODUCT_EXTRA_RECOVERY_KEYS += \
     $(LOCAL_PATH)/security/infinix
+
+PRODUCT_ENFORCE_VINTF_MANIFEST := true    
+    
