@@ -236,7 +236,7 @@ TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
     $(TARGET_OUT_SHARED_LIBRARIES)/libtrustyHalHelper \
     $(TARGET_OUT_VENDOR_SHARED_LIBRARIES)/libtrustyHalHelper \
     $(TARGET_OUT_SHARED_LIBRARIES)/libtrusty.so \
-    $(TARGET_OUT_VENDOR_SHARED_LIBRARIES)/libtrusty.so \ 
+    $(TARGET_OUT_VENDOR_SHARED_LIBRARIES)/libtrusty.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/android.hardware.security.keymint-V1-ndk_platform.so \
     $(TARGET_OUT_VENDOR_SHARED_LIBRARIES)/android.hardware.security.keymint-V1-ndk_platform.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/android.hardware.security.secureclock-V1-ndk_platform.so \
