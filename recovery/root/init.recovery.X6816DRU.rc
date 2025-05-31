@@ -1,5 +1,6 @@
 #add for board init.rc for recovery mode
 import /init.recovery.common.rc
+import /vendor/etc/init/vendor.sprd.hardware.boot@1.2-service.rc
 
 on fs
     start load_modules

@@ -31,29 +31,31 @@ PRODUCT_SOONG_NAMESPACES += \
 PRODUCT_PACKAGES += \
     android.hardware.health@2.1-impl \
     android.hardware.health@2.1-service \
-    libhealthd.$(PRODUCT_PLATFORM) 
-    
+    libhealthd.$(PRODUCT_PLATFORM)
+   
 # Boot control HAL
 PRODUCT_PACKAGES += \
-    android.hardware.boot@1.2-service \
     android.hardware.boot@1.2-impl \
     android.hardware.boot@1.2-impl.recovery \
-    vendor.sprd.hardware.boot@1.2-impl \
-    vendor.sprd.hardware.boot@1.2-impl.recovery
+    android.hardware.boot@1.2-service
     
 PRODUCT_PACKAGES += \
-    bootctrl \
-    bootctrl.recovery \
-    bootctrl.default
-PRODUCT_PACKAGES += \
-    bootctrl.ums512
+    bootctrl.default \
+    bootctrl.ums512 \
+    bootctrl.ums512.recovery
     
 # Debug    
 PRODUCT_PACKAGES_DEBUG += \
     update_engine_client
 PRODUCT_PACKAGES_DEBUG += \
-    bootctrl.ums512
+    bootctrl
 
+# f2fs utilities
+PRODUCT_PACKAGES += \
+    sg_write_buffer \
+    f2fs_io \
+    check_f2fs    
+    
 # OTA and Sideload    
 PRODUCT_PACKAGES += \
     otapreopt_script \
@@ -72,5 +74,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_EXTRA_RECOVERY_KEYS += \
     $(LOCAL_PATH)/security/infinix
 
+# Hidl Service    
 PRODUCT_ENFORCE_VINTF_MANIFEST := true    
     
